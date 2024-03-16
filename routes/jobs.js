@@ -5,9 +5,9 @@ const JobController = require("../controller/jobController");
 
 router.post("/create", Verify, JobController.CreateJobPost )
 
-router.get('/jobdetail/:jobid', JobController.GetJobDetail)
+router.get('/jobdetail/:jobid', Verify, JobController.GetJobDetail)
 
-router.put('/editjob/:jobid', Verify, JobController.EditJobPost);
+router.put('/editjob/:jobid', JobController.EditJobPost);
 
 router.get('/all-jobs', JobController.GetAllJobs);
 

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const jobsSchema = mongoose.Schema(
   {
+    createdBy: {
+      type: "string",
+      required: true,
+    },
     companyName: {
       type: "string",
       required: true,
@@ -16,7 +20,6 @@ const jobsSchema = mongoose.Schema(
     },
     logoUrl: {
       type: "string",
-      required: true,
     },
     salary: {
       type: "string",

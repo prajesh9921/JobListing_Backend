@@ -13,20 +13,21 @@ const CreateJobPost = async (req, res, next) => {
     additionalInformation,
     duration,
     skills,
+    createdBy,
   } = req.body;
 
   if (
     !companyName ||
     !title ||
     !jobDescription ||
-    !logoUrl ||
     !salary ||
     !jobType ||
     !location ||
     !aboutCompnay ||
     !additionalInformation ||
     !duration ||
-    !skills
+    !skills,
+    !createdBy
   ) {
     res.status(400).json({ message: "bad request: required all parameters" });
   }
@@ -43,6 +44,7 @@ const CreateJobPost = async (req, res, next) => {
     additionalInformation,
     duration,
     skills,
+    createdBy,
   });
 
   newJob
@@ -189,6 +191,8 @@ const GetAllJobs = async (req, res, next) => {
         salary: 1,
         location: 1,
         skills: 1,
+        jobType: 1,
+        duration: 1
       }
     );
 

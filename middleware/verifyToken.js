@@ -5,11 +5,10 @@ const User = require('../models/user');
 
 const Verify = (req, res, next) => {
     try {
-        // const token = req.header("Authorization");
+        const token = req.header("Authorization");
 
         // We can use cookies token no need to manually pass the token
-        const token = req.cookies.token;
-        
+        // const token = req.cookies.token;
         // We add bearer infront of the token
         // It signifies that the token is being sent as part of the Authorization header in an HTTP request.
         // It signals to the server that the request should be authenticated using the provided token.
