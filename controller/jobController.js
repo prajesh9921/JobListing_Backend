@@ -17,17 +17,17 @@ const CreateJobPost = async (req, res, next) => {
   } = req.body;
 
   if (
-    !companyName ||
-    !title ||
-    !jobDescription ||
-    !salary ||
-    !jobType ||
-    !location ||
-    !aboutCompnay ||
-    !additionalInformation ||
-    !duration ||
-    !skills,
-    !createdBy
+    (!companyName ||
+      !title ||
+      !jobDescription ||
+      !salary ||
+      !jobType ||
+      !location ||
+      !aboutCompnay ||
+      !additionalInformation ||
+      !duration ||
+      !skills,
+    !createdBy)
   ) {
     res.status(400).json({ message: "bad request: required all parameters" });
   }
@@ -192,7 +192,7 @@ const GetAllJobs = async (req, res, next) => {
         location: 1,
         skills: 1,
         jobType: 1,
-        duration: 1
+        duration: 1,
       }
     );
 
@@ -202,4 +202,25 @@ const GetAllJobs = async (req, res, next) => {
   }
 };
 
-module.exports = { CreateJobPost, GetJobDetail, EditJobPost, GetAllJobs };
+const ToDeleteJob = async (req, res) => {
+  try {
+    const jobId = req.params.jobid;
+
+    if (!jobId) {
+      res.status(400).json({ message: "Bad request" });
+    }
+
+    await Jobs.deleteOne({ _id: jobId });
+    res.status(200).json({ message: "Job Deleted Permanently" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  CreateJobPost,
+  GetJobDetail,
+  EditJobPost,
+  GetAllJobs,
+  ToDeleteJob,
+};

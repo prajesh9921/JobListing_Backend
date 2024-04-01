@@ -11,4 +11,6 @@ router.put('/editjob/:jobid', JobController.EditJobPost);
 
 router.get('/all-jobs', JobController.GetAllJobs);
 
+router.delete('/delete/:jobid', JobController.ToDeleteJob)
+
 module.exports = router;
